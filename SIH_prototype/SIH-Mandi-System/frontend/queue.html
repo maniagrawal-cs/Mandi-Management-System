@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Queue | Mandi System</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="brand">🌾 Mandi Management System</div>
+    <nav>
+      <a href="farmer.html">Dashboard</a>
+      <a href="gate-pass.html">Gate Pass</a>
+      <a href="queue.html">Live Queue</a>
+      <a href="profile.html">Profile</a>
+      <a href="payment.html">Payment</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </nav>
+  </div>
+
+  <div class="container">
+    <h1 class="page-title">Live Queue</h1>
+    <p class="page-subtitle">This page refreshes automatically every few seconds.</p>
+
+    <div id="queue-message"></div>
+
+    <div id="queue-card" class="card" style="display:none;">
+      <div class="field-row">
+        <span class="field-label">Your Gate Pass</span>
+        <span class="field-value gate-pass-id" id="q-gate-pass-id" style="font-size:1.05rem;"></span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">Current Stage</span>
+        <span class="field-value" id="q-stage"></span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">Farmers Ahead</span>
+        <span class="field-value" id="q-ahead"></span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">Farmers Waiting</span>
+        <span class="field-value" id="q-waiting"></span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">Queue Position</span>
+        <span class="field-value" id="q-position"></span>
+      </div>
+    </div>
+
+    <div class="card" id="progress-card" style="display:none;">
+      <h3>Progress</h3>
+      <div class="progress-track" id="progress-track"></div>
+    </div>
+
+    <button class="btn btn-secondary" onclick="loadQueue()">🔄 Refresh Now</button>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/queue.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generate Gate Pass | Mandi System</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="brand">🌾 Mandi Management System</div>
+    <nav>
+      <a href="farmer.html">Dashboard</a>
+      <a href="gate-pass.html">Gate Pass</a>
+      <a href="queue.html">Live Queue</a>
+      <a href="profile.html">Profile</a>
+      <a href="payment.html">Payment</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </nav>
+  </div>
+
+  <div class="container">
+    <h1 class="page-title">Generate Gate Pass</h1>
+    <p class="page-subtitle">Fill in your crop and vehicle details below.</p>
+
+    <!-- The form is shown first -->
+    <div id="form-section" class="card">
+      <h3>Your Details</h3>
+      <div class="grid-2">
+        <div>
+          <label>Name</label>
+          <input id="name" readonly />
+        </div>
+        <div>
+          <label>Mobile Number</label>
+          <input id="mobile" readonly />
+        </div>
+      </div>
+      <label>Father's Name</label>
+      <input id="father_name" readonly />
+
+      <h3 style="margin-top:24px;">Crop Information</h3>
+      <div class="grid-2">
+        <div>
+          <label for="crop_type">Crop Type</label>
+          <select id="crop_type">
+            <option value="Food Grain">Food Grain</option>
+            <option value="Pulses">Pulses</option>
+            <option value="Oilseeds">Oilseeds</option>
+            <option value="Vegetable">Vegetable</option>
+            <option value="Fruit">Fruit</option>
+          </select>
+        </div>
+        <div>
+          <label for="crop_name">Crop Name</label>
+          <input id="crop_name" type="text" placeholder="e.g. Wheat" />
+        </div>
+      </div>
+
+      <label for="mandi">Select Mandi</label>
+      <select id="mandi">
+        <option value="Mandi A">Mandi A</option>
+        <option value="Mandi B">Mandi B</option>
+        <option value="Mandi C">Mandi C</option>
+      </select>
+
+      <h3 style="margin-top:24px;">Vehicle Information</h3>
+      <div class="grid-2">
+        <div>
+          <label for="vehicle_number">Vehicle Number</label>
+          <input id="vehicle_number" type="text" placeholder="e.g. HR01AB1234" />
+        </div>
+        <div>
+          <label for="vehicle_type">Vehicle Type</label>
+          <select id="vehicle_type">
+            <option value="Tractor Trolley">Tractor Trolley</option>
+            <option value="Truck">Truck</option>
+            <option value="Pickup">Pickup</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <h3 style="margin-top:24px;">Procurement Details</h3>
+      <div class="grid-2">
+        <div>
+          <label for="desired_date">Desired Procurement Date</label>
+          <input id="desired_date" type="date" />
+        </div>
+        <div>
+          <label for="estimated_weight">Estimated Crop Weight (Quintals)</label>
+          <input id="estimated_weight" type="number" min="1" placeholder="e.g. 25" />
+        </div>
+      </div>
+
+      <div id="form-message"></div>
+
+      <button class="btn" style="margin-top:16px;" onclick="submitGatePass()">Generate Gate Pass</button>
+    </div>
+
+    <!-- Success view with QR code, hidden until a pass is created -->
+    <div id="success-section" class="card" style="display:none;">
+      <h2 class="center">✅ Gate Pass Generated Successfully</h2>
+      <p class="center">Gate Pass ID</p>
+      <p class="center gate-pass-id" id="result-gate-pass-id"></p>
+
+      <div class="qr-box">
+        <img id="qr-image" src="" alt="Gate Pass QR Code" />
+        <p class="page-subtitle">Please show this QR code at the procurement centre.</p>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" onclick="window.print()">Print / Download</button>
+        <button class="btn btn-secondary" onclick="window.location.href='queue.html'">View Live Queue</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/gate-pass.js"></script>
+</body>
+</html>

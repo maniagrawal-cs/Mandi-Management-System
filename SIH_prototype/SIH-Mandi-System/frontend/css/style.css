@@ -1,0 +1,470 @@
+/* =========================================================
+   style.css
+   Shared stylesheet for the SIH Mandi Management System.
+   Kept intentionally simple: plain CSS, no build step, no
+   framework, so it's easy to read and modify.
+   ========================================================= */
+
+:root {
+  --green: #1e7d32;
+  --green-dark: #14532d;
+  --green-light: #e8f5e9;
+  --orange: #f57c00;
+  --grey: #757575;
+  --blue: #1976d2;
+  --yellow: #f9a825;
+  --purple: #7b1fa2;
+  --dark-green: #1b5e20;
+  --red: #c62828;
+  --bg: #f4f6f4;
+  --card-bg: #ffffff;
+  --text: #212121;
+  --border: #dcdfdc;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--green);
+  text-decoration: none;
+}
+
+/* ---------------- Top bar ---------------- */
+
+.topbar {
+  background: var(--green-dark);
+  color: white;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.topbar .brand {
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar nav {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.topbar nav a {
+  color: #e8f5e9;
+  font-size: 0.95rem;
+  padding: 6px 4px;
+}
+
+.topbar nav a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.topbar .user-info {
+  font-size: 0.9rem;
+  color: #d7ecd8;
+}
+
+/* ---------------- Layout ---------------- */
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 60px;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  color: var(--green-dark);
+  margin-bottom: 4px;
+}
+
+.page-subtitle {
+  color: var(--grey);
+  margin-bottom: 24px;
+}
+
+/* ---------------- Cards ---------------- */
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.card h2, .card h3 {
+  margin-top: 0;
+  color: var(--green-dark);
+}
+
+/* ---------------- Buttons ---------------- */
+
+.btn {
+  display: inline-block;
+  background: var(--green);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  padding: 14px 22px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+  transition: background 0.15s ease-in-out;
+}
+
+.btn:hover {
+  background: var(--green-dark);
+}
+
+.btn:disabled {
+  background: #a5a5a5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--green-dark);
+  border: 2px solid var(--green);
+}
+
+.btn-secondary:hover {
+  background: var(--green-light);
+}
+
+.btn-outline-danger {
+  background: white;
+  color: var(--red);
+  border: 2px solid var(--red);
+}
+
+.btn-row {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-row .btn {
+  width: auto;
+  flex: 1;
+}
+
+/* ---------------- Forms ---------------- */
+
+label {
+  display: block;
+  font-weight: 600;
+  margin: 14px 0 6px;
+  font-size: 0.92rem;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: white;
+  color: var(--text);
+}
+
+input[readonly] {
+  background: #f0f0f0;
+  color: #555;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--green);
+}
+
+/* ---------------- Messages ---------------- */
+
+.message {
+  padding: 12px 14px;
+  border-radius: 8px;
+  margin: 14px 0;
+  font-size: 0.95rem;
+}
+
+.message.error {
+  background: #fdecea;
+  color: var(--red);
+  border: 1px solid #f5c6c2;
+}
+
+.message.success {
+  background: var(--green-light);
+  color: var(--green-dark);
+  border: 1px solid #b7e0ba;
+}
+
+.message.info {
+  background: #e3f2fd;
+  color: var(--blue);
+  border: 1px solid #bbdefb;
+}
+
+/* ---------------- Dashboard menu ---------------- */
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.menu-item {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 26px 18px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--green-dark);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.menu-item:hover {
+  border-color: var(--green);
+  background: var(--green-light);
+}
+
+.menu-item .icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* ---------------- Stage badges ---------------- */
+
+.stage-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.stage-GATE_PASS_GENERATED { background: var(--grey); }
+.stage-ARRIVED { background: var(--blue); }
+.stage-QUALITY { background: var(--yellow); color: #4a3900; }
+.stage-WEIGHT { background: var(--orange); }
+.stage-STORAGE { background: var(--purple); }
+.stage-PAYMENT { background: var(--green); }
+.stage-COMPLETED { background: var(--dark-green); }
+
+/* ---------------- Progress bar (farmer live queue) ---------------- */
+
+.progress-track {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 20px 0;
+}
+
+.progress-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+}
+
+.progress-step .dot {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.progress-step.done .dot {
+  background: var(--green);
+}
+
+.progress-step.current .dot {
+  background: var(--orange);
+}
+
+.progress-step .label {
+  font-weight: 600;
+  color: var(--grey);
+}
+
+.progress-step.done .label,
+.progress-step.current .label {
+  color: var(--text);
+}
+
+/* ---------------- Officer grid ---------------- */
+
+.farmer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.farmer-card {
+  border-radius: var(--radius);
+  padding: 16px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.farmer-card .fc-name {
+  font-weight: 700;
+  font-size: 1.02rem;
+  margin-bottom: 4px;
+}
+
+.farmer-card .fc-id {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin-bottom: 10px;
+}
+
+.farmer-card .fc-stage {
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.25);
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+/* ---------------- Tables ---------------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  color: var(--grey);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+/* ---------------- Misc ---------------- */
+
+.center {
+  text-align: center;
+}
+
+.qr-box {
+  text-align: center;
+  padding: 20px;
+}
+
+.qr-box img {
+  max-width: 240px;
+  border: 8px solid white;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+.gate-pass-id {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--green-dark);
+  letter-spacing: 1px;
+}
+
+.field-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--border);
+}
+
+.field-row:last-child {
+  border-bottom: none;
+}
+
+.field-row .field-label {
+  color: var(--grey);
+}
+
+.field-row .field-value {
+  font-weight: 600;
+  text-align: right;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+.helpline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.helpline:last-child {
+  border-bottom: none;
+}
+
+.helpline .number {
+  font-weight: 700;
+  color: var(--green-dark);
+  font-size: 1.1rem;
+}
+
+#reader {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}

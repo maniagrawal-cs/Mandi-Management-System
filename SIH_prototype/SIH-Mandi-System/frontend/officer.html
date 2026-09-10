@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Officer Dashboard | Mandi System</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="brand">🧑‍💼 Mandi Management System</div>
+    <nav>
+      <a href="officer.html">Dashboard</a>
+      <a href="scanner.html">QR Scanner</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </nav>
+  </div>
+
+  <div class="container">
+    <h1 class="page-title">Officer Dashboard</h1>
+    <p class="page-subtitle" id="welcome-text">Welcome!</p>
+
+    <div class="card">
+      <label for="queue-date">Select Date</label>
+      <input id="queue-date" type="date" onchange="loadFarmers()" />
+    </div>
+
+    <div id="grid-message"></div>
+
+    <div class="card">
+      <h3>Farmer Queue</h3>
+      <div id="farmer-grid" class="farmer-grid"></div>
+    </div>
+
+    <!-- Farmer detail panel, shown when a card is clicked -->
+    <div class="card" id="detail-panel" style="display:none;">
+      <h3>Farmer Details</h3>
+      <div id="detail-body"></div>
+
+      <div id="detail-message"></div>
+
+      <button class="btn" id="advance-btn" onclick="advanceStage()"></button>
+      <button class="btn btn-secondary" onclick="closeDetails()">Close</button>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/officer.js"></script>
+</body>
+</html>

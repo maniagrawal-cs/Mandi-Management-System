@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR Scanner | Mandi System</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="brand">🧑‍💼 Mandi Management System</div>
+    <nav>
+      <a href="officer.html">Dashboard</a>
+      <a href="scanner.html">QR Scanner</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </nav>
+  </div>
+
+  <div class="container" style="max-width: 520px;">
+    <h1 class="page-title">QR Scanner</h1>
+    <p class="page-subtitle">
+      Scan a farmer's gate pass QR code to move them to the next stage
+      (Gate Pass → Arrived → Quality → Weight → Storage → Payment → Completed).
+    </p>
+
+    <div class="card">
+      <div id="reader"></div>
+    </div>
+
+    <div id="scan-message"></div>
+
+    <!-- Manual fallback in case the camera isn't available during the demo -->
+    <div class="card">
+      <h3>Or Enter Gate Pass ID Manually</h3>
+      <label for="manual-id">Gate Pass ID</label>
+      <input id="manual-id" type="text" placeholder="e.g. GP-2026-0001" />
+      <button class="btn" style="margin-top:10px;" onclick="submitManualScan()">Submit</button>
+    </div>
+  </div>
+
+  <!-- Third-party browser QR scanning library (per project requirements,
+       we don't write our own QR scanning logic). -->
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/scanner.js"></script>
+</body>
+</html>

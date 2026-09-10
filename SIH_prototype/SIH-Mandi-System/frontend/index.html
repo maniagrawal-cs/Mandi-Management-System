@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIH Mandi Management System</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="brand">🌾 Mandi Management System</div>
+  </div>
+
+  <div class="container" style="max-width: 480px;">
+    <h1 class="page-title">Welcome</h1>
+    <p class="page-subtitle">Select how you would like to continue.</p>
+
+    <!-- Role selection -->
+    <div id="role-select" class="menu-grid">
+      <div class="menu-item" onclick="showForm('farmer')">
+        <span class="icon">👨‍🌾</span>
+        Farmer Login
+      </div>
+      <div class="menu-item" onclick="showForm('officer')">
+        <span class="icon">🧑‍💼</span>
+        Officer Login
+      </div>
+    </div>
+
+    <!-- Farmer login form -->
+    <div id="farmer-form" class="card" style="display:none;">
+      <h2>Farmer Login</h2>
+      <p class="page-subtitle" style="margin-bottom:0;">
+        Enter your name and mobile number exactly as registered.
+        Your other details are already on file.
+      </p>
+
+      <label for="farmer-name">Full Name</label>
+      <input id="farmer-name" type="text" placeholder="e.g. Rahul Kumar" />
+
+      <label for="farmer-mobile">Mobile Number</label>
+      <input id="farmer-mobile" type="tel" placeholder="e.g. 9876543210" />
+
+      <div id="farmer-message"></div>
+
+      <button class="btn" onclick="farmerLogin()">Login</button>
+      <button class="btn btn-secondary" onclick="showRoleSelect()">Back</button>
+    </div>
+
+    <!-- Officer login form -->
+    <div id="officer-form" class="card" style="display:none;">
+      <h2>Officer Login</h2>
+
+      <label for="officer-username">Username</label>
+      <input id="officer-username" type="text" placeholder="e.g. officer1" />
+
+      <label for="officer-password">Password</label>
+      <input id="officer-password" type="password" placeholder="Password" />
+
+      <div id="officer-message"></div>
+
+      <button class="btn" onclick="officerLogin()">Login</button>
+      <button class="btn btn-secondary" onclick="showRoleSelect()">Back</button>
+    </div>
+
+    <div class="message info" style="margin-top: 20px;">
+      Demo credentials — Farmer: <b>Rahul Kumar</b> / <b>9876543210</b>
+      &nbsp;|&nbsp; Officer: <b>officer1</b> / <b>officer123</b>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script>
+    function showForm(role) {
+      document.getElementById("role-select").style.display = "none";
+      document.getElementById("farmer-form").style.display = role === "farmer" ? "block" : "none";
+      document.getElementById("officer-form").style.display = role === "officer" ? "block" : "none";
+    }
+
+    function showRoleSelect() {
+      document.getElementById("role-select").style.display = "grid";
+      document.getElementById("farmer-form").style.display = "none";
+      document.getElementById("officer-form").style.display = "none";
+    }
+
+    async function farmerLogin() {
+      const msgBox = document.getElementById("farmer-message");
+      clearMessage(msgBox);
+
+      const name = document.getElementById("farmer-name").value.trim();
+      const mobile = document.getElementById("farmer-mobile").value.trim();
+
+      if (!name || !mobile) {
+        showMessage(msgBox, "Please enter both your name and mobile number.");
+        return;
+      }
+
+      try {
+        const data = await apiPost("/farmer/login", { name, mobile });
+        saveFarmerSession(data.farmer);
+        window.location.href = "farmer.html";
+      } catch (err) {
+        showMessage(msgBox, err.message);
+      }
+    }
+
+    async function officerLogin() {
+      const msgBox = document.getElementById("officer-message");
+      clearMessage(msgBox);
+
+      const username = document.getElementById("officer-username").value.trim();
+      const password = document.getElementById("officer-password").value;
+
+      if (!username || !password) {
+        showMessage(msgBox, "Please enter both username and password.");
+        return;
+      }
+
+      try {
+        const data = await apiPost("/officer/login", { username, password });
+        saveOfficerSession(data.officer);
+        window.location.href = "officer.html";
+      } catch (err) {
+        showMessage(msgBox, err.message);
+      }
+    }
+
+    // If already logged in, skip straight to the right dashboard.
+    if (getFarmerSession()) window.location.href = "farmer.html";
+    if (getOfficerSession()) window.location.href = "officer.html";
+  </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile | Mandi System</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="brand">🌾 Mandi Management System</div>
+    <nav>
+      <a href="farmer.html">Dashboard</a>
+      <a href="gate-pass.html">Gate Pass</a>
+      <a href="queue.html">Live Queue</a>
+      <a href="profile.html">Profile</a>
+      <a href="payment.html">Payment</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </nav>
+  </div>
+
+  <div class="container">
+    <h1 class="page-title">My Profile</h1>
+    <p class="page-subtitle">This information comes from your registered farmer record.</p>
+
+    <div class="card">
+      <div class="field-row">
+        <span class="field-label">Name</span>
+        <span class="field-value" id="p-name"></span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">Mobile</span>
+        <span class="field-value" id="p-mobile"></span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">Father's Name</span>
+        <span class="field-value" id="p-father"></span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">Farmer ID</span>
+        <span class="field-value" id="p-farmer-id"></span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">Village</span>
+        <span class="field-value" id="p-village"></span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">District</span>
+        <span class="field-value" id="p-district"></span>
+      </div>
+      <div class="field-row">
+        <span class="field-label">State</span>
+        <span class="field-value" id="p-state"></span>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script>
+    const farmer = requireFarmerLogin();
+    if (farmer) {
+      document.getElementById("p-name").textContent = farmer.name;
+      document.getElementById("p-mobile").textContent = farmer.mobile;
+      document.getElementById("p-father").textContent = farmer.father_name || "-";
+      document.getElementById("p-farmer-id").textContent = farmer.farmer_id;
+      document.getElementById("p-village").textContent = farmer.village || "-";
+      document.getElementById("p-district").textContent = farmer.district || "-";
+      document.getElementById("p-state").textContent = farmer.state || "-";
+    }
+  </script>
+</body>
+</html>

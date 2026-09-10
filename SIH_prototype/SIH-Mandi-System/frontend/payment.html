@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment | Mandi System</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="brand">🌾 Mandi Management System</div>
+    <nav>
+      <a href="farmer.html">Dashboard</a>
+      <a href="gate-pass.html">Gate Pass</a>
+      <a href="queue.html">Live Queue</a>
+      <a href="profile.html">Profile</a>
+      <a href="payment.html">Payment</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </nav>
+  </div>
+
+  <div class="container">
+    <h1 class="page-title">Payment</h1>
+
+    <div id="payment-message"></div>
+
+    <div class="card" id="current-payment-card" style="display:none;">
+      <h3>Current Gate Pass Payment</h3>
+      <div id="current-payment-body"></div>
+    </div>
+
+    <div class="card">
+      <h3>Payment History</h3>
+      <table id="history-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Transaction ID</th>
+          </tr>
+        </thead>
+        <tbody id="history-body">
+          <tr><td colspan="4" class="page-subtitle">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Receipt, shown after "View Receipt" is clicked -->
+    <div class="card" id="receipt-card" style="display:none;">
+      <h2 class="center">🧾 Mandi Procurement Receipt</h2>
+      <div id="receipt-body"></div>
+      <div class="btn-row" style="margin-top:16px;">
+        <button class="btn" onclick="window.print()">Download / Print</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('receipt-card').style.display='none'">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/payment.js"></script>
+</body>
+</html>
